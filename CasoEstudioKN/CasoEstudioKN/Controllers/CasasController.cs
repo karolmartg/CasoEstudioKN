@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CasoEstudioKN.BaseDatos;
+using CasoEstudioKN.Models;
 
 namespace CasoEstudioKN.Controllers
 {
@@ -28,23 +30,30 @@ namespace CasoEstudioKN.Controllers
         [HttpGet]
         public ActionResult Consultar()
         {
-            try
+            {
+                try
+                {
+                    using (var context = new CasoEstudioKNEntities())
+                    {
+                        var casas = context.SP_ObtenerCasasFiltradas().ToList();
+
+                        return View(casas);
+                    }
+                }
+                catch
+                {
+                    return View("Error");
+                }
+            }
+        }
+            #endregion
+
+            #region Alquilar
+            [HttpGet]
+            public ActionResult Alquilar()
             {
                 return View();
             }
-            catch (Exception ex)
-            {
-                return View("Error");
-            }
+            #endregion
         }
-        #endregion
-
-        #region Alquilar
-        [HttpGet]
-        public ActionResult Alquilar()
-        {
-            return View();
-        }
-        #endregion
     }
-}

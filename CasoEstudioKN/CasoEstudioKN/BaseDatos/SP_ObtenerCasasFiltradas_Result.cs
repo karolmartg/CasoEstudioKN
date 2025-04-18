@@ -16,7 +16,7 @@ namespace CasoEstudioKN.BaseDatos
         public string DescripcionCasa { get; set; }
         public decimal PrecioCasa { get; set; }
         public string UsuarioAlquiler { get; set; }
+        public Nullable<System.DateTime> FechaAlquiler { get; set; }
         public string Estado { get; set; }
-        public string Fecha { get; set; }
     }
 }

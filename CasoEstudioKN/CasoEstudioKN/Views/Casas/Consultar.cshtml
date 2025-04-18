@@ -1,7 +1,33 @@
-﻿
+﻿@model List<CasoEstudioKN.BaseDatos.SP_ObtenerCasasFiltradas_Result>
+
 @{
-    ViewBag.Title = "Consultar";
+    ViewBag.Title = "Consulta de Casas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
-<h2>Consultar Casas</h2>
+<h2>Consulta de Casas</h2>
 
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Usuario</th>
+            <th>Estado</th>
+            <th>Fecha de Alquiler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var casa in Model)
+        {
+            <tr>
+                <td>@casa.DescripcionCasa</td>
+                <td>₡@casa.PrecioCasa.ToString("N2")</td>
+                <td>@casa.UsuarioAlquiler</td>
+                <td>@casa.Estado</td>
+                <td>@casa.FechaAlquiler</td>
+            </tr>
+        }
+    </tbody>
+</table>

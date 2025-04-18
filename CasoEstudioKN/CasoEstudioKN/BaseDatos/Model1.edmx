@@ -58,8 +58,8 @@
           <Property Type="String" Name="DescripcionCasa" Nullable="false" MaxLength="30" />
           <Property Type="Decimal" Name="PrecioCasa" Nullable="false" Precision="10" Scale="2" />
           <Property Type="String" Name="UsuarioAlquiler" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="FechaAlquiler" Nullable="true" Precision="23" />
           <Property Type="String" Name="Estado" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="Fecha" Nullable="true" MaxLength="4000" />
         </ComplexType>
         <ComplexType Name="SP_ObtenerTodasCasas_Result">
           <Property Type="String" Name="DescripcionCasa" Nullable="false" MaxLength="30" />
@@ -100,8 +100,8 @@
                 <ScalarProperty Name="DescripcionCasa" ColumnName="DescripcionCasa" />
                 <ScalarProperty Name="PrecioCasa" ColumnName="PrecioCasa" />
                 <ScalarProperty Name="UsuarioAlquiler" ColumnName="UsuarioAlquiler" />
+                <ScalarProperty Name="FechaAlquiler" ColumnName="FechaAlquiler" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
