@@ -46,14 +46,58 @@ namespace CasoEstudioKN.Controllers
                 }
             }
         }
-            #endregion
+        #endregion
 
-            #region Alquilar
-            [HttpGet]
-            public ActionResult Alquilar()
+        #region Alquilar
+        [HttpGet]
+        public ActionResult Alquilar(long? idCasaSeleccionada)
+        {
+            try
             {
-                return View();
+                using (var context = new CasoEstudioKNEntities())
+                {
+                    var casasDisponibles = context.SP_ListarCasas()
+                        .Select(c => new CasasModel
+                        {
+                            IdCasa = c.IdCasa,
+                            DescripcionCasa = c.DescripcionCasa,
+                            PrecioCasa = c.PrecioCasa
+                        }).ToList();
+
+                    ViewBag.CasasDisponibles = new SelectList(casasDisponibles, "IdCasa", "DescripcionCasa", idCasaSeleccionada);
+
+                    var modelo = idCasaSeleccionada.HasValue
+                        ? casasDisponibles.FirstOrDefault(c => c.IdCasa == idCasaSeleccionada.Value)
+                        : new CasasModel();
+
+                    return View(modelo);
+                }
             }
-            #endregion
+            catch
+            {
+                return View("Error");
+            }
         }
+
+
+
+        // Vista: Alquiler de casas (POST)
+        [HttpPost]
+        public ActionResult Alquilar(CasasModel model)
+        {
+            try
+            {
+                using (var context = new CasoEstudioKNEntities())
+                {
+                    context.SP_AlquilarCasa(model.IdCasa, model.UsuarioAlquiler);
+                    return RedirectToAction("Consultar");
+                }
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+        #endregion
     }
+}

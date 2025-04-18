@@ -15,5 +15,6 @@ namespace CasoEstudioKN.BaseDatos
     {
         public long IdCasa { get; set; }
         public string DescripcionCasa { get; set; }
+        public decimal PrecioCasa { get; set; }
     }
 }

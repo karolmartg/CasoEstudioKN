@@ -53,6 +53,7 @@
         <ComplexType Name="SP_ListarCasas_Result">
           <Property Type="Int64" Name="IdCasa" Nullable="false" />
           <Property Type="String" Name="DescripcionCasa" Nullable="false" MaxLength="30" />
+          <Property Type="Decimal" Name="PrecioCasa" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
         <ComplexType Name="SP_ObtenerCasasFiltradas_Result">
           <Property Type="String" Name="DescripcionCasa" Nullable="false" MaxLength="30" />
@@ -91,6 +92,7 @@
               <ComplexTypeMapping TypeName="CasoEstudioKNModel.SP_ListarCasas_Result">
                 <ScalarProperty Name="IdCasa" ColumnName="IdCasa" />
                 <ScalarProperty Name="DescripcionCasa" ColumnName="DescripcionCasa" />
+                <ScalarProperty Name="PrecioCasa" ColumnName="PrecioCasa" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

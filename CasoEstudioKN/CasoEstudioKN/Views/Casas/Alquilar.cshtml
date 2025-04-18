@@ -1,7 +1,37 @@
-﻿
+﻿@model CasoEstudioKN.Models.CasasModel
+
 @{
-    ViewBag.Title = "Alquilar";
+    ViewBag.Title = "Alquilar Casa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Alquilar Casa</h2>
 
+@using (Html.BeginForm("Alquilar", "Casas", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.IdCasa, "Casa disponible")
+        @Html.DropDownListFor(m => m.IdCasa,
+            ViewBag.CasasDisponibles as SelectList,
+            "-- Seleccione una casa --",
+            new
+                 {
+                @class = "form-control",
+                onchange = "window.location.href = '/Casas/Alquilar?idCasaSeleccionada=' + this.value;"
+            })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Precio")
+        <input type="text" class="form-control"
+               value="₡@(Model.PrecioCasa > 0 ? Model.PrecioCasa.ToString("N2") : "-")"
+               readonly />
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.UsuarioAlquiler, "Usuario que alquila")
+        @Html.TextBoxFor(m => m.UsuarioAlquiler, new { @class = "form-control", placeholder = "Digite su nombre" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Alquilar</button>
+}
